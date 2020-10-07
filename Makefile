@@ -7,7 +7,7 @@ INCLUDE	:= include
 LIB		:= lib
 
 LIBRARIES	:=
-
+DOXYGENCONF = Doxyfile
 ifeq ($(OS),Windows_NT)
 EXECUTABLE	:= main.exe
 SOURCEDIRS	:= $(SRC)
@@ -36,6 +36,9 @@ clean:
 
 run: all
 	./$(BIN)/$(EXECUTABLE)
+
+documentation:
+	-doxygen $(DOXYGENCONF)
 
 $(BIN)/$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(CINCLUDES) $(CLIBS) $^ -o $@ $(LIBRARIES)
