@@ -20,8 +20,11 @@ int main()
 	float results_insertion[3];
 	float results_bubble[3];
 	test_insertion(seeds, 3, results_insertion);
-	test_bubble(seeds, 1, results_bubble);
+	//test_bubble(seeds, 1, results_bubble);
 	printf("temps insertion = %fs\n", results_insertion[0]);
 	printf("temps tri bulle = %fs\n", results_bubble[0]);
+	FILE *fichier1 = fopen("fichier1", "w");
+	fprintf(fichier1,"temps insertion = %fs",results_insertion[0]);
+	fclose(fichier1);
 	return (0);
 }
