@@ -1,13 +1,3 @@
-/**
- * @file tab.c
- * @author Victor DURAND & Léo Albouy (contact@victordurand.fr)
- * @brief 
- * @version 0.1
- * @date 2020-10-07
- * 
- * @copyright Copyright (c) 2020
- * 
- */
 
 /**
  * @brief Display all cells in an array
@@ -32,7 +22,7 @@ for (int i = 0; i < size; i++)
  */
 void mockArray(float *tab,int size,int seed){
 	srand(seed);
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < size-1; i++)
 	{
 		tab[i] =  (float) (rand() % 50);
 	}
