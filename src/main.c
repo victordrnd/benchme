@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "bubblesort.h"
+#include "sorts/bubblesort/bubblesort.h"
 
 int main()
 {
