@@ -24,6 +24,6 @@ void mockArray(float *tab,int size,int seed){
 	srand(seed);
 	for (int i = 0; i < size-1; i++)
 	{
-		tab[i] =  (float) (rand() % 50);
+		tab[i] =  (float) (rand() % 1000000);
 	}
 }

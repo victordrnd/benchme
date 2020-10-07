@@ -24,6 +24,6 @@ float execution_time(void (*funct)()){
     t1 = clock();
     (*funct)();
     t2 = clock();
-	temps = (float)(t2-t1) * 1e-6;
+	temps = (float)(t2-t1) / (float) CLOCKS_PER_SEC;
     return temps;
 }
