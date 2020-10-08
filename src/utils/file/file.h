@@ -1,0 +1,1 @@
+void export_results(char *filename, float *values, char *algorithm_name);

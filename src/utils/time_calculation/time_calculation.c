@@ -18,11 +18,11 @@
  * @param funct function to calculate execution time 
  * @return float execution time
  */
-float execution_time(void (*funct)()){
+float execution_time(void (*funct)(float*,int, int),float *tab,int size, int ascending ){
     clock_t t1, t2;
 	float temps;
     t1 = clock();
-    (*funct)();
+    (*funct)(tab, size, ascending);
     t2 = clock();
 	temps = (float)(t2-t1) / (float) CLOCKS_PER_SEC;
     return temps;
