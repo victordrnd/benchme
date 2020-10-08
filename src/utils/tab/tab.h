@@ -25,5 +25,5 @@ void displayTab(float *tab, int size);
  * @param size Size of the array
  * @param seed Seed for random
  */
-void mockArray(float *tab,int size,int seed)
+void mockArray(float *tab,int size,int seed);
 

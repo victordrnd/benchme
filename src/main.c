@@ -9,29 +9,22 @@
  * 
  */
 #include <stdio.h>
-#include "utils/tab.h"
 #include "sorts/bubblesort/bubblesort.h"
 #include "sorts/insertionsort/insertionsort.h"
+#include "utils/tab/tab.h"
+#include "utils/time_calculation/time_calculation.h"
 
-
-/**
- * @brief Program entry
- * 
- * @return int 
- */
-int main()
+int main(int argc, char *argv[])
 {
-	float tab[100];
-	mockArray(tab, 100, 0x400);
-	printf("\n");
-	insertionsort(tab, 100, 0);
-	//bubblesort(tab, 100, 0);
-	displayTab(tab, 100);
-	
+	int seeds[3] = {9, 34, 56};
+	float results_insertion[3];
+	float results_bubble[3];
+	test_insertion(seeds, 3, results_insertion);
+	test_bubble(seeds, 1, results_bubble);
+	printf("temps insertion = %fs\n", results_insertion[0]);
+	printf("temps tri bulle = %fs\n", results_bubble[0]);
+	FILE *fichier = fopen(argv[1], "w");
+	fprintf(fichier,"temps insertion = %fs",results_insertion[0]);
+	fclose(fichier);
 	return (0);
 }
-
-
-
-
-
