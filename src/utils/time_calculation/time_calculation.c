@@ -24,7 +24,7 @@ float execution_time(void (*funct)(float*,int, int),float *tab,int size, int asc
     t1 = clock();
     (*funct)(tab, size, ascending);
     t2 = clock();
-	temps = (float) (t2-t1) * 1e-6;
-    printf("t = %fs\n", (float) (t2-t1) * 1e-6);
+	temps = (float) (t2-t1) / CLOCKS_PER_SEC;
+    printf("t = %fs\n", (float) (t2-t1) / CLOCKS_PER_SEC);
     return temps;
 }
