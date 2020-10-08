@@ -56,6 +56,7 @@ void test_bubble(int *seeds, int nb_of_tests,float *results)
         for(int j = 0;j<6;j++){
             mockArray(addresses[j], sizes[j],seeds[i]);
             results[i*6 + j] = execution_time(bubblesort, addresses[j], sizes[j], ASCENDING);
+            printf("%0.6f ", results[i*6 + j]);
         }
     }
 
