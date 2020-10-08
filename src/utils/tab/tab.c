@@ -1,3 +1,4 @@
+#include "../time_calculation/time_calculation.h"
 
 #define ASCENDING 1
 #define DESCENDING 0
@@ -53,14 +54,14 @@ void test_sort(int *seeds, int nb_of_tests,float *results, void (*funct)(float*,
     {
         for(int j = 0;j<6;j++){
             mockArray(addresses[j], sizes[j],seeds[i]);
-            results[i*6 + j] = execution_time(funct, addresses[j], sizes[j], ASCENDING);
-            // printf("Execution time : %0.6f \n", results[i*6 + j]);
+            float num =  execution_time(funct, addresses[j], sizes[j], ASCENDING);
+            results[i*6 + j] = num;
         }
     }
 
     for(int i=0; i< 6 ;i++){
         float val = results[i] + results[i+6] + results[i+12];
-        results[i] = (float) (val/ (float) nb_of_tests);
+		results[i] = (float) (val/nb_of_tests);
     }
     
 }

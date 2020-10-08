@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
 	test_bubble(seeds, 3, results_bubble);
 	printf("\nRunning heap sort test...\n");
 	test_heapsort(seeds, 3, results_heap);
-	printf("\n%s\n", "Exporting results...");
 	if (argv[1])
 	{
+	printf("\n%s\n", "Exporting results...");
 		export_results(argv[1], results_bubble, "Bubble sort");
 		export_results(argv[1], results_insertion, "Insertion sort");
 		export_results(argv[1], results_selection, "Selection sort");
