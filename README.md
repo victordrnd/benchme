@@ -23,3 +23,4 @@ Voici la syntaxe à utiliser : `benchme <nom du fichier>`
 
 - Implémentation de nouveaux algorithmes de tri.
 - Création d'un menu graphique pour visualiser la courbe de chaque algorithme
+ 
