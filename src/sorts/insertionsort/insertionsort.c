@@ -8,8 +8,7 @@
  * 
  */
 
-#include "../../utils/time_calculation/time_calculation.h"
-#include "../../utils/file/file.h"
+#include "../../utils/tab/tab.h"
 
 #define ASCENDING 1
 #define DESCENDING 0
@@ -46,27 +45,5 @@ void insertionsort(float *tab, int size, int ascending)
  */
 void test_insertion(int *seeds, int nb_of_tests,float *results)
 {
-    float tab2[100];
-    float tab3[1000];
-    float tab4[10000];
-    float tab5[100000];
-    float tab6[1000000];
-    float *tab7 = malloc(sizeof(float) * 10000000);
-
-    int sizes[6] = {100, 1000, 10000, 100000, 0, 0};
-    float *addresses[6] = {tab2, tab3,tab4,tab5,tab6,tab7};
-    for (int i = 0; i < nb_of_tests; i++)
-    {
-        for(int j = 0;j<6;j++){
-            mockArray(addresses[j], sizes[j],seeds[i]);
-            results[i*6 + j] = execution_time(insertionsort, addresses[j], sizes[j], ASCENDING);
-            printf("%0.6f ", results[i*6 + j]);
-        }
-    }
-
-    for(int i=0; i< 6 ;i++){
-        float val = results[i] + results[i+6] + results[i+12];
-        results[i] = (float) (val/nb_of_tests);
-    }
-    
+    test_sort(seeds, nb_of_tests, results, insertionsort);
 }

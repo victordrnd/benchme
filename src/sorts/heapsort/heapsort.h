@@ -8,8 +8,39 @@
  * 
  */
 
-void heapSort(float *tab, int size, int ascending);
+/**
+ * @brief  Shift the child down
+ * @param  tab: array to sort
+ * @param  i: 
+ * @param  size: size of the array to sort
+ * @param  ascending: 1 if ascending, 0 if descending
+ */
+void siftDown( int *tab, int i, int size, int ascending);
 
-void create(float *tab, int ascending);
+/**
+ * @brief  
+ * @note   
+ * @param  *m: 
+ * @param  *n: 
+ * @retval None
+ */
+void swap(int *m, int *n);
 
-void down_adjust(float *tab,int i, int ascending);
+/**
+ * @brief  
+ * @note   
+ * @param  *tab: 
+ * @param  size: 
+ * @param  ascending: 
+ * @retval None
+ */
+void heapsort(int *tab, int size, int ascending);
+
+/**
+ * @brief Test heapsort sort execution time
+ * 
+ * @param seeds Seeds for every test, need to be exactly the size of nb_of_tests
+ * @param nb_of_tests Number of test to perform
+ * @param results Memory address of an empty array of float, will contain each execution time for every test 
+ */
+void test_heapsort(int *seeds, int nb_of_tests,float *results);
