@@ -10,7 +10,8 @@
 
 
 #include <time.h>
-
+#define ASCENDING 1 
+#define DESCENDING 0
 
 /**
  * @brief Sort array using Bubblesort algorythm 
@@ -48,23 +49,19 @@ void test_bubble(int *seeds, int nb_of_tests,float *results)
     float tab6[1000000];
     float *tab7 = malloc(sizeof(float) * 10000000);
 
-    clock_t t1, t2;
+    int sizes[6] = {100, 1000, 10000, 100000, 0, 0};
+    float *addresses[6] = {tab2, tab3,tab4,tab5,tab6,tab7};
     for (int i = 0; i < nb_of_tests; i++)
     {
-        mockArray(tab2, 100, seeds[i]);
-        mockArray(tab3, 1000, seeds[i]);
-        mockArray(tab4, 10000, seeds[i]);
-        mockArray(tab5, 100000, seeds[i]);
-        //mockArray(tab6, 1000000, seeds[i]);
-        //mockArray(tab7, 10000000, seeds[i]);
-        t1 = clock();
-        bubblesort(tab2, 100, 0);
-        bubblesort(tab3, 1000, 0);
-        bubblesort(tab4, 10000, 0);
-        bubblesort(tab5, 100000, 0);
-        //bubblesort(tab6, 1000000, 0);
-        //bubblesort(tab7, 10000000, 0);
-        t2 = clock();
-        results[i]=(float)(t2-t1) / (float) CLOCKS_PER_SEC;
+        for(int j = 0;j<6;j++){
+            mockArray(addresses[j], sizes[j],seeds[i]);
+            results[i*6 + j] = execution_time(bubblesort, addresses[j], sizes[j], ASCENDING);
+            printf("%0.6f ", results[i*6 + j]);
+        }
+    }
+
+    for(int i=0; i< 6 ;i++){
+        float val = results[i] + results[i+6] + results[i+12];
+        results[i] = (float) (val / (float) nb_of_tests);
     }
 }

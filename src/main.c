@@ -11,20 +11,24 @@
 #include <stdio.h>
 #include "sorts/bubblesort/bubblesort.h"
 #include "sorts/insertionsort/insertionsort.h"
-#include "utils/tab/tab.h"
-#include "utils/time_calculation/time_calculation.h"
+#include "sorts/selectionsort/selectionsort.h"
+#include "utils/file/file.h"
 
 int main(int argc, char *argv[])
 {
 	int seeds[3] = {9, 34, 56};
-	float results_insertion[3];
-	float results_bubble[3];
+	float results_insertion[18];
+	float results_bubble[18];
+	float results_selection[18];
+	printf("Running insertion sort test...\n");
 	test_insertion(seeds, 3, results_insertion);
-	test_bubble(seeds, 1, results_bubble);
-	printf("temps insertion = %fs\n", results_insertion[0]);
-	printf("temps tri bulle = %fs\n", results_bubble[0]);
-	FILE *fichier = fopen(argv[1], "w");
-	fprintf(fichier,"temps insertion = %fs",results_insertion[0]);
-	fclose(fichier);
+	printf("Running selection sort test...\n");
+	test_selection(seeds, 3, results_selection);
+	printf("Running bubble sort test...\n");
+	test_bubble(seeds, 3, results_bubble);
+
+	export_results(argv[1], results_bubble, "Bubble sort");
+	export_results(argv[1], results_insertion, "Insertion sort");
+	export_results(argv[1], results_bubble, "Selection sort");
 	return (0);
 }

@@ -1,5 +1,5 @@
 /**
- * @file insertionsort.c
+ * @file selectionsort.c
  * @author Victor DURAND & Léo Albouy (contact@victordurand.fr)
  * @version 0.1
  * @date 2020-10-07
@@ -8,34 +8,31 @@
  * 
  */
 
-#include "../../utils/time_calculation/time_calculation.h"
-#include "../../utils/file/file.h"
-
 #define ASCENDING 1
 #define DESCENDING 0
-
-
 /**
- * @brief Sort an array using insertion sort
- * 
- * @param tab array of float
- * @param size size of the array
- * @param ascending 1 if ascending 0 if descending
+ * @brief  Sort array using selection sort
+ * @param  tab Array of float to sort 
+ * @param  size: Size of the array to sort 
+ * @param  ascending : 1 if ascending 0 descending
  */
-void insertionsort(float *tab, int size, int ascending)
+void selectionsort(float *tab, int size, int ascending)
 {
-   int i, j;
-   float temp;
-   for(i=1;i<size;i++){
-      temp=tab[i];
-      j=i-1;
-      while((temp<tab[j])&&(j>=0)){
-         tab[j+1]=tab[j];
-         j=j-1;
-      }
-      tab[j+1]=temp;
-   }
+    int i, j, min;
+
+    for (i = 0; i < size - 1; i++)
+    {
+        min = i;
+        for (j = i + 1; j < size; j++)
+            if (ascending ^ tab[j] < tab[min])
+                min = j;
+
+        float temp = tab[min];
+        tab[min] = tab[i];
+        tab[i] = temp;
+    }
 }
+
 
 /**
  * @brief Test insertion sort execution time
@@ -44,7 +41,7 @@ void insertionsort(float *tab, int size, int ascending)
  * @param nb_of_tests Number of test to perform
  * @param results Memory address of an empty array of float, will contain each execution time for every test 
  */
-void test_insertion(int *seeds, int nb_of_tests,float *results)
+void test_selection(int *seeds, int nb_of_tests,float *results)
 {
     float tab2[100];
     float tab3[1000];
@@ -59,14 +56,14 @@ void test_insertion(int *seeds, int nb_of_tests,float *results)
     {
         for(int j = 0;j<6;j++){
             mockArray(addresses[j], sizes[j],seeds[i]);
-            results[i*6 + j] = execution_time(insertionsort, addresses[j], sizes[j], ASCENDING);
+            results[i*6 + j] = execution_time(selectionsort, addresses[j], sizes[j], ASCENDING);
             printf("%0.6f ", results[i*6 + j]);
         }
     }
 
     for(int i=0; i< 6 ;i++){
         float val = results[i] + results[i+6] + results[i+12];
-        results[i] = (float) (val/nb_of_tests);
+        results[i] = (float) (val/ (float) nb_of_tests);
     }
     
 }
