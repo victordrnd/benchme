@@ -18,6 +18,12 @@ Les paramètres de cette commande sont dans le fichier *Makefile*
 Cette commande permet de créer un fichier au format CSV qui contient tous les temps d'exécution pour chaque algorithmes. 
 
 Voici la syntaxe à utiliser : `benchme <nom du fichier>`
+## Résultat attendus
+
+  - Tri à bulle : Θ(n²)
+  - Tri par insertion : Θ(n²)
+  - Tri par selection : Θ(n²)
+  - Tri par tas : Θ(n log n)
 
 ## Evolution à venir
 

@@ -17,17 +17,11 @@ void export_results(char *filename, float *values, char *algorithm_name)
 	if (0 == size)
 	{
 		fprintf(fichier, "%s\n", "Algorithme name, Array size, Execution Time");
-		for (int i = 0; i < 6; i++)
-		{
-			fprintf(fichier, "%s, %d, %f\n", algorithm_name, sizes[i], values[i]);
-		}
+		
 	}
-	else
+	for (int i = 0; i < 6; i++)
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			fprintf(fichier, "%s, %d, %f\n", algorithm_name, sizes[i], values[i]);
-		}
+		fprintf(fichier, "%s, %d, %f\n", algorithm_name, sizes[i], values[i]);
 	}
 	fclose(fichier);
 }
