@@ -9,10 +9,8 @@
  */
 
 #include "../../utils/tab/tab.h"
-
 #define ASCENDING 1
 #define DESCENDING 0
-
 
 /**
  * @brief Sort an array using insertion sort
@@ -23,16 +21,17 @@
  */
 void insertionsort(float *tab, int size, int ascending)
 {
-   int i, j;
-   float temp;
-   for(i=1;i<size;i++){
-      temp=tab[i];
-      j=i-1;
-      while((temp<tab[j])&&(j>=0)){
-         tab[j+1]=tab[j];
-         j=j-1;
+   int j;
+   for (int i = 1; i < size; i++)
+   {
+      float temp = tab[i];
+      j = i - 1;
+      while ((temp < tab[j]) ^ ascending && j >= 0)
+      {
+            tab[j + 1] = tab[j];
+            j = j - 1;
       }
-      tab[j+1]=temp;
+      tab[j + 1] = temp;
    }
 }
 
@@ -43,7 +42,7 @@ void insertionsort(float *tab, int size, int ascending)
  * @param nb_of_tests Number of test to perform
  * @param results Memory address of an empty array of float, will contain each execution time for every test 
  */
-void test_insertion(int *seeds, int nb_of_tests,float *results)
+void test_insertion(int *seeds, int nb_of_tests, float *results)
 {
-    test_sort(seeds, nb_of_tests, results, insertionsort);
+   test_sort(seeds, nb_of_tests, results, insertionsort);
 }
