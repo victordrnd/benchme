@@ -8,12 +8,36 @@
  * 
  */
 
+#include "heapsort.h"
 
-#include "../../utils/tab/tab.h"
-#define ASCENDING 1
-#define DESCENDING 0
+void swap(float *a, float *b)
+{
+	float temp = *a;
+	*a = *b;
+	*b = temp;
+}
 
-void siftDown(int *tab, int i, int size, int ascending);
+
+void heapify(float *arr, int n, int i, int ascending)
+{
+	int largest = i;
+	int left = (i << 1) + 1;
+	int right = (i << 1) + 2;
+
+	if (left < n && (arr[left] > arr[largest]) ^ !ascending)
+		largest = left;
+
+	if (right < n && (arr[right] > arr[largest]) ^ !ascending)
+		largest = right;
+
+	//while root is not max
+	if (largest != i)
+	{
+		swap(&arr[i], &arr[largest]);
+		heapify(arr, n, largest, ascending);
+	}
+}
+
 
 /**
  * @brief  Heap sort algorithm
@@ -21,47 +45,17 @@ void siftDown(int *tab, int i, int size, int ascending);
  * @param  size: Size of the array to sort
  * @param  ascending: ASCENDING or DESCENDING
  */
-void heapsort(int *tab, int size, int ascending)
+void heapsort(float *tab, int size, int ascending)
 {
-	for (int i = size / 2; i >= 0; i--)
+	for (int i = size / 2 - 1; i >= 0; i--)
+		heapify(tab, size, i, ascending);
+	for (int i = size - 1; i >= 0; i--)
 	{
-		siftDown(tab, i, size, ascending);
-	}
-
-	while (size - 1 > 0)
-	{
-		float temp = tab[size - 1];
-		tab[size - 1] = tab[0];
-		tab[0] = temp;
-		siftDown(tab, 0, size - 1, ascending);
-		size--;
+		swap(&tab[0], &tab[i]);
+		heapify(tab, i, 0,ascending);
 	}
 }
 
-/**
- * @brief  
- * @param  tab: Array to sort 
- * @param  size: Size of the array to sort
- * @param  ascending: 1 if ascending 0 if descending
- */
-void siftDown(int *tab, int i, int size, int ascending)
-{
-	while (i * 2 + 1 < size)
-	{
-		int child = 2 * i + 1;
-		if ((child + 1 < size) && (tab[child] < tab[child + 1]))
-			child++;
-		if ((tab[i] < tab[child]) ^ ascending)
-		{
-			float temp = tab[child];
-			tab[child] = tab[i];
-			tab[i] = temp;
-			i = child;
-		}
-		else
-			return;
-	}
-}
 
 /**
  * @brief Test heapsort sort execution time
@@ -70,7 +64,7 @@ void siftDown(int *tab, int i, int size, int ascending)
  * @param nb_of_tests Number of test to perform
  * @param results Memory address of an empty array of float, will contain each execution time for every test 
  */
-void test_heapsort(int *seeds, int nb_of_tests,float *results)
+void test_heapsort(int *seeds, int nb_of_tests, float *results)
 {
-    test_sort(seeds, nb_of_tests, results, heapsort);
+	test_sort(seeds, nb_of_tests, results, heapsort);
 }

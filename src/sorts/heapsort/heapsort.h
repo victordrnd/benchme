@@ -8,23 +8,32 @@
  * 
  */
 
-/**
- * @brief  Shift the child down
- * @param  tab: array to sort
- * @param  i: 
- * @param  size: size of the array to sort
- * @param  ascending: 1 if ascending, 0 if descending
- */
-void siftDown( int *tab, int i, int size, int ascending);
+
+#include "../../utils/tab/tab.h"
+#define ASCENDING 1
+#define DESCENDING 0
+
 
 /**
- * @brief  
+ * @brief  swap two float
  * @note   
- * @param  *m: 
- * @param  *n: 
+ * @param  *a: 
+ * @param  *b: 
  * @retval None
  */
-void swap(int *m, int *n);
+void swap(float *a, float *b);
+
+
+/**
+ * @brief Heapify and array
+ * 
+ * @param arr 
+ * @param n 
+ * @param i 
+ * @param ascending 
+ */
+void heapify(float *arr, int n, int i, int ascending);
+
 
 /**
  * @brief  
@@ -34,7 +43,9 @@ void swap(int *m, int *n);
  * @param  ascending: 
  * @retval None
  */
-void heapsort(int *tab, int size, int ascending);
+void heapsort(float *tab, int size, int ascending);
+
+
 
 /**
  * @brief Test heapsort sort execution time
